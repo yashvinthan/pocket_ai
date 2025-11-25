@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+pyyaml
+requests
+tqdm
+psutil
+cryptography
+httpx
+numpy
+opencv-python-headless
+Pillow
+pytest
+ruff
+python-multipart

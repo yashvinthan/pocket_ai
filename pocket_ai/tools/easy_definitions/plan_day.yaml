@@ -1,0 +1,32 @@
+name: "plan_day_workflow"
+description: "Review calendar and tasks to plan the day."
+category: "productivity"
+input_type: "text"
+output_type: "text"
+uses_cloud: true
+model: "gpt-4o-mini"
+data_sources:
+  - plugin: "todoist_tasks"
+    action: "list_open_tasks"
+    as: "tasks_snapshot"
+    payload:
+      action: "list_open_tasks"
+  - plugin: "google_calendar"
+    action: "list_events"
+    as: "calendar_view"
+    payload:
+      action: "list_events"
+prompt_template: |
+  You are the POCKET-AI planning assistant. Summarize the current obligations and propose a focused schedule.
+
+  Tasks JSON:
+  {{tasks_snapshot}}
+
+  Calendar JSON:
+  {{calendar_view}}
+
+  User context:
+  {{user_text}}
+
+  Output a concise plan with bullet points plus one actionable recommendation.
+allowed_profiles: ["HYBRID", "CUSTOM"]

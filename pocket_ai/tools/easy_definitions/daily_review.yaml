@@ -1,0 +1,29 @@
+name: "daily_review"
+description: "Summarize today's tasks, meetings, and wellness stats."
+category: "productivity"
+input_type: "none"
+output_type: "text"
+uses_cloud: false
+data_sources:
+  - plugin: "todoist_tasks"
+    as: "tasks_snapshot"
+    payload:
+      action: "list_open_tasks"
+  - plugin: "google_calendar"
+    as: "calendar_view"
+    payload:
+      action: "list_events"
+prompt_template: |
+  Create a short daily review with:
+  1. Key meetings left today.
+  2. Tasks that are overdue.
+  3. Suggested focus block.
+  Use the JSON data below.
+
+  Tasks:
+  {{tasks_snapshot}}
+
+  Calendar:
+  {{calendar_view}}
+
+

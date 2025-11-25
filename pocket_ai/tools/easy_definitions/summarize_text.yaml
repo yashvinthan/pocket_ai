@@ -1,0 +1,11 @@
+name: "summarize_text"
+description: "Summarize the provided text into key bullet points."
+category: "productivity"
+input_type: "text"
+output_type: "text"
+uses_cloud: true
+prompt_template: |
+  Summarize the following text into 3 key bullet points:
+  ---
+  {{user_text}}
+allowed_profiles: ["HYBRID", "CUSTOM"]
